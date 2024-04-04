@@ -58,4 +58,17 @@ public class DataSaver : MonoBehaviour
     {
         CurrentPlayer = name;
     }
+
+    public void ClearSaveData()
+    {
+        SaveData data = new SaveData();
+        data.HighScore = 0;
+        data.HighScorer = " ";
+
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+
+        LoadHighScore();
+    }
 }
